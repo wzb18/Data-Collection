@@ -72,7 +72,7 @@ esffang_data_get <- function(city_get = "深圳"){
   
   
   print("Final ROUND:BEGIN TO GET DATA")
-  print("BUSINESS AREA NUM: ", nrow(url_tmp))
+  cat("BUSINESS AREA NUM: ", nrow(url_tmp))
   
   #### get url
   house_out <- list()
@@ -98,7 +98,7 @@ esffang_data_get <- function(city_get = "深圳"){
     name_href <- unlist(lapply(tmp, function(x) x %>% html_nodes('.plotTit') %>% html_attr("href")))
     name_price <- unlist(lapply(tmp, function(x) x %>% html_nodes('.listRiconwrap') %>% html_text() %>% str_trim() %>% str_extract('.*元')))
     data_out <- data.frame(name, name_href, name_price)
-    data_out$region <- shenzhen_district$district[i]
+    data_out$region <- url_tmp$district[i]
     result_out[[i]] <- data_out
   }
   
